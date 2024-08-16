@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIPE IPv4 Subnet / Population</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div style="width: 100%; margin: auto;">
+        <canvas id="myBarChart"></canvas>
+    </div>
+
+    <script>
+        const data = [
+  {
+    "Country": "ad",
+    "Subnet": 224,
+    "countryName": "Andorra",
+    "population": 77006
+  },
+  {
+    "Country": "ae",
+    "Subnet": 20210,
+    "countryName": "United Arab Emirates",
+    "population": 9630959
+  },
+  {
+    "Country": "af",
+    "Subnet": 6,
+    "countryName": "Afghanistan",
+    "population": 37172386
+  },
+  {
+    "Country": "ag",
+    "Subnet": 445,
+    "countryName": "Antigua and Barbuda",
+    "population": 96286
+  },
+  {
+    "Country": "al",
+    "Subnet": 1855,
+    "countryName": "Albania",
+    "population": 2866376
+  },
+  {
+    "Country": "am",
+    "Subnet": 2484,
+    "countryName": "Armenia",
+    "population": 2951776
+  },
+  {
+    "Country": "ao",
+    "Subnet": 4,
+    "countryName": "Angola",
+    "population": 30809762
+  },
+  {
+    "Country": "at",
+    "Subnet": 33020,
+    "countryName": "Austria",
+    "population": 8840521
+  },
+  {
+    "Country": "au",
+    "Subnet": 521,
+    "countryName": "Australia",
+    "population": 24982688
+  },
+  {
+    "Country": "ax",
+    "Subnet": 16,
+    "countryName": "Åland Adaları",
+    "population": 29789
+  },
+  {
+    "Country": "az",
+    "Subnet": 2966,
+    "countryName": "Azerbaijan",
+    "population": 9939800
+  },
+  {
+    "Country": "ba",
+    "Subnet": 3055,
+    "countryName": "Bosnia and Herzegovina",
+    "population": 3323929
+  },
+  {
+    "Country": "bc",
+    "Subnet": 4,
+    "countryName": "BC",
+    "population": 0
+  },
+  {
+    "Country": "bd",
+    "Subnet": 8,
+    "countryName": "Bangladesh",
+    "population": 161356039
+  },
+  {
+    "Country": "be",
+    "Subnet": 34850,
+    "countryName": "Belgium",
+    "population": 11433256
+  },
+  {
+    "Country": "bg",
+    "Subnet": 15949,
+    "countryName": "Bulgaria",
+    "population": 7025037
+  },
+  {
+    "Country": "bh",
+    "Subnet": 1738,
+    "countryName": "Bahrain",
+    "population": 1569439
+  },
+  {
+    "Country": "bm",
+    "Subnet": 12,
+    "countryName": "Bermuda",
+    "population": 63973
+  },
+  {
+    "Country": "bq",
+    "Subnet": 1,
+    "countryName": "Bonaire",
+    "population": 25987
+  },
+  {
+    "Country": "br",
+    "Subnet": 8,
+    "countryName": "Brazil",
+    "population": 209469333
+  },
+  {
+    "Country": "by",
+    "Subnet": 6949,
+    "countryName": "Belarus",
+    "population": 9483499
+  },
+  {
+    "Country": "bz",
+    "Subnet": 216,
+    "countryName": "Belize",
+    "population": 383071
+  },
+  {
+    "Country": "ca",
+    "Subnet": 1199,
+    "countryName": "Canada",
+    "population": 37057765
+  },
+  {
+    "Country": "ch",
+    "Subnet": 39380,
+    "countryName": "Switzerland",
+    "population": 8513227
+  },
+  {
+    "Country": "cn",
+    "Subnet": 82,
+    "countryName": "China",
+    "population": 1392730000
+  },
+  {
+    "Country": "cw",
+    "Subnet": 44,
+    "countryName": "Curacao",
+    "population": 149996
+  },
+  {
+    "Country": "cy",
+    "Subnet": 4746,
+    "countryName": "Cyprus",
+    "population": 1189265
+  },
+  {
+    "Country": "cz",
+    "Subnet": 31927,
+    "countryName": "Czech Republic",
+    "population": 10629928
+  },
+  {
+    "Country": "de",
+    "Subnet": 331517,
+    "countryName": "Germany",
+    "population": 82905782
+  },
+  {
+    "Country": "dj",
+    "Subnet": 1,
+    "countryName": "Djibouti",
+    "population": 958920
+  },
+  {
+    "Country": "dk",
+    "Subnet": 41595,
+    "countryName": "Denmark",
+    "population": 5793636
+  },
+  {
+    "Country": "dm",
+    "Subnet": 4,
+    "countryName": "Dominica",
+    "population": 71625
+  },
+  {
+    "Country": "ee",
+    "Subnet": 4921,
+    "countryName": "Estonia",
+    "population": 1321977
+  },
+  {
+    "Country": "eg",
+    "Subnet": 4,
+    "countryName": "Egypt",
+    "population": 98423595
+  },
+  {
+    "Country": "es",
+    "Subnet": 115752,
+    "countryName": "Spain",
+    "population": 46796540
+  },
+  {
+    "Country": "fi",
+    "Subnet": 38467,
+    "countryName": "Finland",
+    "population": 5515525
+  },
+  {
+    "Country": "fk",
+    "Subnet": 28,
+    "countryName": "Falkland Islands",
+    "population": 2840
+  },
+  {
+    "Country": "fo",
+    "Subnet": 172,
+    "countryName": "Faroe Islands",
+    "population": 48497
+  },
+  {
+    "Country": "fr",
+    "Subnet": 267444,
+    "countryName": "France",
+    "population": 66977107
+  },
+  {
+    "Country": "ge",
+    "Subnet": 4943,
+    "countryName": "Georgia",
+    "population": 3726549
+  },
+  {
+    "Country": "gg",
+    "Subnet": 145,
+    "countryName": "Guernsey",
+    "population": 65573
+  },
+  {
+    "Country": "gi",
+    "Subnet": 924,
+    "countryName": "Gibraltar",
+    "population": 33718
+  },
+  {
+    "Country": "gl",
+    "Subnet": 134,
+    "countryName": "Greenland",
+    "population": 56025
+  },
+  {
+    "Country": "gp",
+    "Subnet": 420,
+    "countryName": "Guadeloupe",
+    "population": 395700
+  },
+  {
+    "Country": "gr",
+    "Subnet": 18648,
+    "countryName": "Greece",
+    "population": 10731726
+  },
+  {
+    "Country": "hk",
+    "Subnet": 1588,
+    "countryName": "Hong Kong",
+    "population": 7451000
+  },
+  {
+    "Country": "hp",
+    "Subnet": 4,
+    "countryName": "HP",
+    "population": 0
+  },
+  {
+    "Country": "hr",
+    "Subnet": 9065,
+    "countryName": "Croatia",
+    "population": 4087843
+  },
+  {
+    "Country": "hu",
+    "Subnet": 20474,
+    "countryName": "Hungary",
+    "population": 9775564
+  },
+  {
+    "Country": "ie",
+    "Subnet": 22293,
+    "countryName": "Ireland",
+    "population": 4867309
+  },
+  {
+    "Country": "il",
+    "Subnet": 23740,
+    "countryName": "Israel",
+    "population": 8882800
+  },
+  {
+    "Country": "im",
+    "Subnet": 478,
+    "countryName": "Isle of Man",
+    "population": 84519
+  },
+  {
+    "Country": "in",
+    "Subnet": 524,
+    "countryName": "India",
+    "population": 1352617328
+  },
+  {
+    "Country": "iq",
+    "Subnet": 1745,
+    "countryName": "Iraq",
+    "population": 38433600
+  },
+  {
+    "Country": "ir",
+    "Subnet": 45575,
+    "countryName": "Iran",
+    "population": 81800269
+  },
+  {
+    "Country": "is",
+    "Subnet": 2639,
+    "countryName": "Iceland",
+    "population": 352721
+  },
+  {
+    "Country": "it",
+    "Subnet": 171327,
+    "countryName": "Italy",
+    "population": 60421760
+  },
+  {
+    "Country": "je",
+    "Subnet": 306,
+    "countryName": "Jersey",
+    "population": 107800
+  },
+  {
+    "Country": "jo",
+    "Subnet": 2516,
+    "countryName": "Jordan",
+    "population": 9956011
+  },
+  {
+    "Country": "jp",
+    "Subnet": 37,
+    "countryName": "Japan",
+    "population": 126529100
+  },
+  {
+    "Country": "ke",
+    "Subnet": 1,
+    "countryName": "Kenya",
+    "population": 51393010
+  },
+  {
+    "Country": "kg",
+    "Subnet": 941,
+    "countryName": "Kyrgyzstan",
+    "population": 6322800
+  },
+  {
+    "Country": "kr",
+    "Subnet": 2,
+    "countryName": "South Korea",
+    "population": 51606633
+  },
+  {
+    "Country": "kw",
+    "Subnet": 6573,
+    "countryName": "Kuwait",
+    "population": 4137309
+  },
+  {
+    "Country": "kz",
+    "Subnet": 12501,
+    "countryName": "Kazakhstan",
+    "population": 18272430
+  },
+  {
+    "Country": "lb",
+    "Subnet": 2292,
+    "countryName": "Lebanon",
+    "population": 6848925
+  },
+  {
+    "Country": "li",
+    "Subnet": 350,
+    "countryName": "Liechtenstein",
+    "population": 37910
+  },
+  {
+    "Country": "lr",
+    "Subnet": 1,
+    "countryName": "Liberia",
+    "population": 4818977
+  },
+  {
+    "Country": "lt",
+    "Subnet": 9731,
+    "countryName": "Lithuania",
+    "population": 2801543
+  },
+  {
+    "Country": "lu",
+    "Subnet": 3886,
+    "countryName": "Luxembourg",
+    "population": 607950
+  },
+  {
+    "Country": "lv",
+    "Subnet": 6492,
+    "countryName": "Latvia",
+    "population": 1927174
+  },
+  {
+    "Country": "ly",
+    "Subnet": 12,
+    "countryName": "Libya",
+    "population": 6678567
+  },
+  {
+    "Country": "mc",
+    "Subnet": 242,
+    "countryName": "Monaco",
+    "population": 38682
+  },
+  {
+    "Country": "md",
+    "Subnet": 4750,
+    "countryName": "Moldova",
+    "population": 2706049
+  },
+  {
+    "Country": "me",
+    "Subnet": 810,
+    "countryName": "Montenegro",
+    "population": 631219
+  },
+  {
+    "Country": "mh",
+    "Subnet": 2,
+    "countryName": "Marshall Islands",
+    "population": 58413
+  },
+  {
+    "Country": "mk",
+    "Subnet": 2673,
+    "countryName": "North Macedonia",
+    "population": 2084367
+  },
+  {
+    "Country": "mq",
+    "Subnet": 513,
+    "countryName": "Martinique",
+    "population": 376480
+  },
+  {
+    "Country": "mt",
+    "Subnet": 2616,
+    "countryName": "Malta",
+    "population": 484630
+  },
+  {
+    "Country": "mu",
+    "Subnet": 4,
+    "countryName": "Mauritius",
+    "population": 1265303
+  },
+  {
+    "Country": "ng",
+    "Subnet": 20,
+    "countryName": "Nigeria",
+    "population": 195874740
+  },
+  {
+    "Country": "nl",
+    "Subnet": 113146,
+    "countryName": "Netherlands",
+    "population": 17231624
+  },
+  {
+    "Country": "no",
+    "Subnet": 34068,
+    "countryName": "Norway",
+    "population": 5311916
+  },
+  {
+    "Country": "nz",
+    "Subnet": 38,
+    "countryName": "New Zealand",
+    "population": 4841000
+  },
+  {
+    "Country": "om",
+    "Subnet": 3458,
+    "countryName": "Oman",
+    "population": 4829483
+  },
+  {
+    "Country": "pa",
+    "Subnet": 100,
+    "countryName": "Panama",
+    "population": 4176873
+  },
+  {
+    "Country": "pl",
+    "Subnet": 68088,
+    "countryName": "Poland",
+    "population": 37974750
+  },
+  {
+    "Country": "ps",
+    "Subnet": 3333,
+    "countryName": "Palestine",
+    "population": 4569087
+  },
+  {
+    "Country": "pt",
+    "Subnet": 25065,
+    "countryName": "Portugal",
+    "population": 10283822
+  },
+  {
+    "Country": "qa",
+    "Subnet": 3294,
+    "countryName": "Qatar",
+    "population": 2781677
+  },
+  {
+    "Country": "re",
+    "Subnet": 204,
+    "countryName": "Reunion",
+    "population": 859959
+  },
+  {
+    "Country": "ro",
+    "Subnet": 30032,
+    "countryName": "Romania",
+    "population": 19466145
+  },
+  {
+    "Country": "rs",
+    "Subnet": 8122,
+    "countryName": "Serbia",
+    "population": 6963764
+  },
+  {
+    "Country": "ru",
+    "Subnet": 159879,
+    "countryName": "Russia",
+    "population": 144478050
+  },
+  {
+    "Country": "sa",
+    "Subnet": 40263,
+    "countryName": "Saudi Arabia",
+    "population": 33699947
+  },
+  {
+    "Country": "sc",
+    "Subnet": 1986,
+    "countryName": "Seychelles",
+    "population": 96762
+  },
+  {
+    "Country": "se",
+    "Subnet": 93552,
+    "countryName": "Sweden",
+    "population": 10175214
+  },
+  {
+    "Country": "sg",
+    "Subnet": 169,
+    "countryName": "Singapore",
+    "population": 5638676
+  },
+  {
+    "Country": "si",
+    "Subnet": 9282,
+    "countryName": "Slovenia",
+    "population": 2073894
+  },
+  {
+    "Country": "sk",
+    "Subnet": 8569,
+    "countryName": "Slovakia",
+    "population": 5446771
+  },
+  {
+    "Country": "sm",
+    "Subnet": 141,
+    "countryName": "San Marino",
+    "population": 33785
+  },
+  {
+    "Country": "sy",
+    "Subnet": 4975,
+    "countryName": "Syria",
+    "population": 16906283
+  },
+  {
+    "Country": "th",
+    "Subnet": 1,
+    "countryName": "Thailand",
+    "population": 69428524
+  },
+  {
+    "Country": "tj",
+    "Subnet": 270,
+    "countryName": "Tajikistan",
+    "population": 9100837
+  },
+  {
+    "Country": "tm",
+    "Subnet": 86,
+    "countryName": "Turkmenistan",
+    "population": 5850908
+  },
+  {
+    "Country": "tn",
+    "Subnet": 4,
+    "countryName": "Tunisia",
+    "population": 11565204
+  },
+  {
+    "Country": "tr",
+    "Subnet": 63549,
+    "countryName": "Turkey",
+    "population": 82319724
+  },
+  {
+    "Country": "tw",
+    "Subnet": 8,
+    "countryName": "Taiwan",
+    "population": 23570000
+  },
+  {
+    "Country": "ua",
+    "Subnet": 27560,
+    "countryName": "Ukraine",
+    "population": 44622516
+  },
+  {
+    "Country": "uk",
+    "Subnet": 341128,
+    "countryName": "United Kingdom",
+    "population": 66460344
+  },
+  {
+    "Country": "us",
+    "Subnet": 30261,
+    "countryName": "United States",
+    "population": 326687501
+  },
+  {
+    "Country": "uz",
+    "Subnet": 1010,
+    "countryName": "Uzbekistan",
+    "population": 32955400
+  },
+  {
+    "Country": "va",
+    "Subnet": 40,
+    "countryName": "Vatican",
+    "population": 825
+  },
+  {
+    "Country": "vg",
+    "Subnet": 509,
+    "countryName": "British Virgin Islands",
+    "population": 29802
+  },
+  {
+    "Country": "vn",
+    "Subnet": 6,
+    "countryName": "Vietnam",
+    "population": 95540395
+  },
+  {
+    "Country": "vu",
+    "Subnet": 4,
+    "countryName": "Vanuatu",
+    "population": 292680
+  },
+  {
+    "Country": "we",
+    "Subnet": 2,
+    "countryName": "WE",
+    "population": 0
+  },
+  {
+    "Country": "ye",
+    "Subnet": 544,
+    "countryName": "Yemen",
+    "population": 28498687
+  },
+  {
+    "Country": "za",
+    "Subnet": 42,
+    "countryName": "South Africa",
+    "population": 57779622
+  }
+];
+
+        data.sort((a, b) => b.Subnet - a.Subnet);
+
+        const labels = data.map(item => item.countryName);
+        const subnets = data.map(item => item.Subnet);
+        const populations = data.map(item => item.population);
+
+        const config = {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+					{
+                        label: 'Population',
+                        data: populations,
+                        type: 'line',
+						backgroundColor: 'rgba(255, 99, 132, 0.2)',
+						borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 2,
+                        fill: false,
+                        yAxisID: 'y1'
+                    },
+					{
+                        label: 'Count of /24 Subnet',
+                        data: subnets,
+                        backgroundColor: '#36A2EB',
+                        borderColor: '#36A2EB',
+                        borderWidth: 1,
+                        yAxisID: 'y'
+                    }
+
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        ticks: {
+                            autoSkip: false, 
+                            maxRotation: 90, 
+                            minRotation: 90, 
+                            font: {
+                                size: 10 
+                            }
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Count of /24 Subnet'
+                        }
+                    },
+                    y1: {
+                        beginAtZero: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'Population'
+                        },
+                        grid: {
+                            drawOnChartArea: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return `${tooltipItem.dataset.label}: ${tooltipItem.raw}`;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const ctx = document.getElementById('myBarChart').getContext('2d');
+        const myBarChart = new Chart(ctx, config);
+    </script>
+</body>
+</html>
